@@ -7,14 +7,14 @@ $memcache = new Memcache;
 $memcache->addServer('127.0.0.1', 11211);
 $rateLimiter = new RateLimiter($memcache, $_SERVER["REMOTE_ADDR"]);
 try {
-	// allow a maximum of 20 requests for the IP in 5 minutes
-	$rateLimiter->limitRequestsInMinutes(20, 5);
+	// allow a maximum of 200 requests for the IP in 5 minutes
+	$rateLimiter->limitRequestsInMinutes(200, 5);
 } catch (RateExceededException $e) {
 	header("HTTP/1.0 529 Too Many Requests");
 	exit;
 }
 
-if (isset($_SESSION['LAST_CALL'])) {
+/*if (isset($_SESSION['LAST_CALL'])) {
     $last = strtotime($_SESSION['LAST_CALL']);
     $curr = strtotime(date("Y-m-d h:i:s"));
 	$sec =  abs($last - $curr);
@@ -23,7 +23,7 @@ if (isset($_SESSION['LAST_CALL'])) {
 		exit;      
     }
   }
-  $_SESSION['LAST_CALL'] = date("Y-m-d h:i:s");
+  $_SESSION['LAST_CALL'] = date("Y-m-d h:i:s");*/
 
 
 
