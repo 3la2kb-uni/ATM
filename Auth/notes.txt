@@ -1,0 +1,9 @@
+sudo apt-get -y install gcc make autoconf libc-dev pkg-config
+sudo apt-get -y install zlib1g-dev
+sudo apt-get -y install libmemcached-dev
+sudo pecl7.X-sp install memcached
+
+//memcache not memcached
+service memcached start
+
+//apt-get install php-memcached php-memcache
