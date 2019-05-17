@@ -14,7 +14,7 @@ try {
 	exit;
 }
 
-/*if (isset($_SESSION['LAST_CALL'])) {
+if (isset($_SESSION['LAST_CALL'])) {
     $last = strtotime($_SESSION['LAST_CALL']);
     $curr = strtotime(date("Y-m-d h:i:s"));
 	$sec =  abs($last - $curr);
@@ -23,7 +23,7 @@ try {
 		exit;      
     }
   }
-  $_SESSION['LAST_CALL'] = date("Y-m-d h:i:s");*/
+  $_SESSION['LAST_CALL'] = date("Y-m-d h:i:s");
 
 
 
