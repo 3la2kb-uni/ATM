@@ -17,8 +17,8 @@ else
 end
 
 function atmFigure_OpeningFcn(hObject, eventdata, handles, varargin)
-    %global curlReply
-    %handles.cardInfoText.String = strcat("Balance: ", curlReply.results(1).cardBalance);
+    global curlReply
+    handles.cardInfoText.String = strcat("Balance: ", curlReply.results(1).cardBalance);
     handles.output = hObject;
     guidata(hObject, handles);
 
