@@ -79,10 +79,6 @@ function procceedButton_Callback(hObject, eventdata, handles)
 curlRequest
     cReply = evalc(curlRequest);
     cReply
-    %{
-    cReply = regexprep(cReply,'%(.+){"results":','{"results":');
-    cReply = jsondecode(cReply);
-    %}
 
 
 function zeroButton_Callback(hObject, eventdata, handles)
