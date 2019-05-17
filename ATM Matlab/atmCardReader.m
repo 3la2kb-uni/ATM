@@ -41,11 +41,7 @@ function continueButton_Callback(hObject, eventdata, handles)
         curlWhere = regexprep(curlWhere,"+", "");
         % ----------------------
         curlLink = strcat("http://206.81.31.74", "?", curlWhere);
-        %curlRequest = '!curl -X GET -H "X-Parse-Application-Id: z67qtKXnIlsfZLAvW8GTr0f1c6X8z2Iz3WQu3P4G" -H "X-Parse-REST-API-Key: krxglR3koefhyGvc4dlSQQhH2n5FKoYTq3FuCRmp" ' + curlLink ;
         curlRequest = '!curl -X GET ' + curlLink ;
-        %dataString = strcat("'{", '"cardBalance":"500"', "}'");
-        %curlLink = "https://parseapi.back4app.com/classes/cardClass/iACrCAG7NQ"
-        %%curlRequest = '!curl -X POST -H "X-Parse-Application-Id: z67qtKXnIlsfZLAvW8GTr0f1c6X8z2Iz3WQu3P4G" -H "X-Parse-REST-API-Key: krxglR3koefhyGvc4dlSQQhH2n5FKoYTq3FuCRmp" -H "Content-Type: application/json" -d ' + dataString + " " + curlLink ;
         
         curlReply = evalc(curlRequest);
         curlReply        
