@@ -1,4 +1,4 @@
-function varargout = atmCardRead(varargin)
+function varargout = atmCardReader(varargin)
 
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
