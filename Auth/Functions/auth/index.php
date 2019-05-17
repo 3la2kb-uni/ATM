@@ -2,40 +2,39 @@
   include('../rate.php');
 
 
-  $domain = 'https://atmuni.free.beeceptor.com/'; //should be edited to parse api domain
-  $dest='';
+  $domain = 'https://parseapi.back4app.com/classes/cardClass'; //should be edited to parse api domain
+  $url=$domain;
 
   $json = file_get_contents('php://input');
   $data = json_decode($json,true);
+  // var_dump($data['Action']);
+  $method ='';
+  if(isset($_GET['where'])){
 
-  if(isset($data['do'])){
-    $do = $data['do'];
-    if($do==='activate'){
-      $dest='activate';
-    } elseif($do==='deposit'){
-      $dest='deposit';
-    } elseif($do==='withdraw'){
-      $dest='withdraw';
-    } elseif($do==='data'){
-      $dest='data';
-    } else{
+      $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/json\r\n"."Accept: application/json\r\n"."X-Parse-Application-Id:z67qtKXnIlsfZLAvW8GTr0f1c6X8z2Iz3WQu3P4G\r\n"."X-Parse-REST-API-Key:krxglR3koefhyGvc4dlSQQhH2n5FKoYTq3FuCRmp\r\n",
+            'method'  => 'GET',
+        )
+    );
+    $context  = stream_context_create($options);
+      $res = file_get_contents($domain.'?where='.html_entity_decode($_GET['where']), false, $context);
+      die($res);
+    } elseif($data['Action']==='Deposit'){
+      $url=$domain.'/'.$data['objectId'];
+    } /*else{
       die('Invalid operation');
-    }
+    }*/
 
 
-  }
 
-  if(strlen($dest)>1){
 
-  $url=$domain.$dest;
-  unset($data['do']);
 
-  //$data = array('key1' => 'value1', 'key2' => 'value2'); // WIP should take values from user
 
   $options = array(
       'http' => array(
-          'header'  => "Content-Type: application/json\r\n"."Accept: application/json\r\n"."API-KEY: Sup3rS3cr37K3Y\r\n",
-          'method'  => 'POST',
+          'header'  => "Content-Type: application/json\r\n"."Accept: application/json\r\n"."X-Parse-Application-Id:z67qtKXnIlsfZLAvW8GTr0f1c6X8z2Iz3WQu3P4G\r\n"."X-Parse-REST-API-Key:krxglR3koefhyGvc4dlSQQhH2n5FKoYTq3FuCRmp\r\n",
+          'method'  => 'PUT',
           'content' => json_encode($data)
       )
   );
@@ -43,8 +42,8 @@
   $result = file_get_contents($url, false, $context);
   if ($result === FALSE) { die("an error occured"); }
 
-  var_dump($result);
-  }else{die("Invalid request");}
+  die($result);
+
 
   /* Code for authentication WIP*/
 
